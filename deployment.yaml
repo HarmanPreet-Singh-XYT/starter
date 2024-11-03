@@ -23,16 +23,6 @@ spec:
             secretKeyRef:
               name: starter-secret
               key: secret-env
-        - name: SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: starter-secret
-              key: secret-key
-        - name: SECRET_CERT
-          valueFrom:
-            secretKeyRef:
-              name: starter-secret
-              key: secret-cert
 ---
 apiVersion: v1
 kind: Service
