@@ -1,0 +1,20 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+ARG ENV
+ENV ENV=$ENV
+ARG SECRET_KEY
+ENV SECRET_KEY=$SECRET_KEY
+ARG SECRET_CERT
+ENV SECRET_CERT=$SECRET_CERT
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

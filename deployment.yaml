@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starter-deployment-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: starter2
+  template:
+    metadata:
+      labels:
+        app: starter2
+    spec:
+      containers:
+      - name: starter2
+        image: harmanpreet27/starter
+        ports:
+        - containerPort: 3000
+        env:
+        - name: ENV
+          valueFrom:
+            secretKeyRef:
+              name: starter-secret
+              key: secret-env
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: starter-secret
+              key: secret-key
+        - name: SECRET_CERT
+          valueFrom:
+            secretKeyRef:
+              name: starter-secret
+              key: secret-cert
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: starter-service-2
+spec:
+  type: NodePort
+  selector:
+    app: starter2
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 31000

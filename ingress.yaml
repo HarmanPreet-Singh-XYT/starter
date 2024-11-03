@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: starter-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: myapp.local  # This is a local domain; you’ll map this to your Minikube IP.
+    http:
+      paths:
+      - path: /starter
+        pathType: Prefix
+        backend:
+          service:
+            name: starter-service
+            port:
+              number: 3000
+      - path: /starter2
+        pathType: Prefix
+        backend:
+          service:
+            name: starter-service-2
+            port:
+              number: 3000
