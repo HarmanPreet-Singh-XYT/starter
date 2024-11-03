@@ -16,10 +16,10 @@ spec:
             name: starter-service
             port:
               number: 3000
-      - path: /starter2
-        pathType: Prefix
-        backend:
-          service:
-            name: starter-service-2
-            port:
-              number: 3000
+      # - path: /starter2
+      #   pathType: Prefix
+      #   backend:
+      #     service:
+      #       name: starter-service-2
+      #       port:
+      #         number: 3000
